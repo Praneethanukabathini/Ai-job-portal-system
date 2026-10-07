@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Resume Builder & PDF Preview | AI Job Portal</title>
+  
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/resume.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234f46e5'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'></path><polyline points="14 2 14 8 20 8"></polyline></svg>" />
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <span>AI Job Portal<span class="brand-ai-badge">RESUME</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#jobsSection" class="nav-link">Find Jobs</a></li>
+          <li><a href="resume-builder.html" class="nav-link active">Resume Builder</a></li>
+          <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-right">
+        <!-- Theme Toggle -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" onclick="Theme.toggle()" title="Toggle Theme" aria-label="Toggle Dark/Light Mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <div id="navAuthActions" class="nav-auth-actions"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Resume Builder Main View -->
+  <main class="resume-builder-page">
+    <div class="container">
+
+      <!-- Action Toolbar -->
+      <div class="resume-toolbar-card">
+        <div>
+          <h2 style="font-size: 1.35rem;">AI Interactive Resume Builder</h2>
+          <p class="text-xs text-muted">Edit details on the left — watch the live A4 preview update instantly on the right.</p>
+        </div>
+
+        <div class="toolbar-controls">
+          <div class="template-selector-wrap">
+            <label for="resumeTemplateSelect" class="text-xs font-bold text-muted">Template:</label>
+            <select id="resumeTemplateSelect" class="form-input form-input-sm" style="width: 150px;">
+              <option value="modern" selected>Modern Tech</option>
+              <option value="classic">Classic Executive</option>
+              <option value="minimal">Minimal ATS</option>
+            </select>
+          </div>
+
+          <button class="btn btn-outline btn-sm" onclick="ResumeBuilder.syncToProfile()" title="Save skills and details to your Candidate account">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+            Sync to Profile
+          </button>
+
+          <button class="btn btn-primary btn-sm" onclick="ResumeBuilder.printResume()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Print / Save as PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Split Layout: Form Inputs & Live Preview -->
+      <div class="resume-split-layout">
+        
+        <!-- Form Inputs Editor Pane -->
+        <div class="resume-editor-pane">
+
+          <!-- Personal Information -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Personal Details
+              </h3>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="res_fullName">Full Name</label>
+                <input type="text" id="res_fullName" class="form-input" placeholder="Rahul Sharma" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="res_professionalTitle">Professional Title</label>
+                <input type="text" id="res_professionalTitle" class="form-input" placeholder="Full Stack Java Developer" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="res_email">Email</label>
+                <input type="email" id="res_email" class="form-input" placeholder="rahul@example.com" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="res_phone">Phone</label>
+                <input type="text" id="res_phone" class="form-input" placeholder="+91 98765 43210" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="res_location">Location</label>
+                <input type="text" id="res_location" class="form-input" placeholder="Bengaluru, India" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="res_linkedin">LinkedIn Profile URL</label>
+                <input type="text" id="res_linkedin" class="form-input" placeholder="linkedin.com/in/username" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="res_github">GitHub / Portfolio URL</label>
+              <input type="text" id="res_github" class="form-input" placeholder="github.com/username" />
+            </div>
+          </div>
+
+          <!-- Career Objective -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon></svg>
+                Career Objective
+              </h3>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="res_objective">Professional Summary</label>
+              <textarea id="res_objective" class="form-input" rows="3" placeholder="Brief 2-3 sentence overview of your strengths, engineering passion, and goals..."></textarea>
+            </div>
+          </div>
+
+          <!-- Technical Skills -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                Skills (Comma Separated)
+              </h3>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="res_skills">Enter skills separated by commas</label>
+              <textarea id="res_skills" class="form-input" rows="3" placeholder="Java, Spring Boot, React, JavaScript, SQL, Docker, Git, REST APIs"></textarea>
+            </div>
+          </div>
+
+          <!-- Work Experience -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                Work Experience
+              </h3>
+              <button type="button" class="btn btn-outline btn-xs" onclick="ResumeBuilder.addExperience()">+ Add Experience</button>
+            </div>
+            <div id="experienceRepeater"></div>
+          </div>
+
+          <!-- Projects -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                Projects
+              </h3>
+              <button type="button" class="btn btn-outline btn-xs" onclick="ResumeBuilder.addProject()">+ Add Project</button>
+            </div>
+            <div id="projectsRepeater"></div>
+          </div>
+
+          <!-- Education -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                Education
+              </h3>
+              <button type="button" class="btn btn-outline btn-xs" onclick="ResumeBuilder.addEducation()">+ Add Education</button>
+            </div>
+            <div id="educationRepeater"></div>
+          </div>
+
+          <!-- Certifications -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                Certifications
+              </h3>
+              <button type="button" class="btn btn-outline btn-xs" onclick="ResumeBuilder.addCertification()">+ Add Certification</button>
+            </div>
+            <div id="certificationsRepeater"></div>
+          </div>
+
+        </div>
+
+        <!-- Sticky Live A4 Preview Pane -->
+        <div class="resume-preview-pane">
+          <div id="resumePaper" class="resume-sheet template-modern"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Auth Modal -->
+  <div id="authModal" class="modal-overlay">
+    <div class="modal-container" id="authModalContent"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/resume.js"></script>
+</body>
+</html>

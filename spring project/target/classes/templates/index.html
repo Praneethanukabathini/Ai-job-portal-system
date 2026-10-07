@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Job Portal - AI-powered job matching, skill gap analysis, resume builder, and candidate tracking system for modern engineering careers." />
+  <meta name="keywords" content="AI Job Portal, Java Developer, Python Developer, Frontend Developer, Data Analyst, VLSI Engineer, India Jobs, Skill Gap Analysis" />
+  <title>AI Job Portal | Find Your Dream Job with AI</title>
+  
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234f46e5'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>" />
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand" id="navLogo">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <span>AI Job Portal<span class="brand-ai-badge">SMART AI</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="#jobsSection" class="nav-link">Find Jobs</a></li>
+          <li><a href="#aiMatchSection" class="nav-link">AI Match</a></li>
+          <li><a href="#skillGapSection" class="nav-link">Skill Gap</a></li>
+          <li><a href="resume-builder.html" class="nav-link">Resume Builder</a></li>
+          <li><a href="#companiesSection" class="nav-link">Companies</a></li>
+          <li><a href="#aboutSection" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-right">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" onclick="Theme.toggle()" title="Toggle Theme" aria-label="Toggle Dark/Light Mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <!-- Auth Actions / User Menu (Populated dynamically by auth.js) -->
+        <div id="navAuthActions" class="nav-auth-actions"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-pill-badge">
+          <span>✨ Powered by Next-Gen AI Matching Algorithms</span>
+          <span class="accent">v2.5 Live</span>
+        </div>
+
+        <h1 class="hero-title">
+          Find Your Dream Job with <span class="gradient-text">AI Precision</span>
+        </h1>
+        <p class="hero-desc">
+          Discover high-impact engineering and tech jobs matched to your unique skills. Analyze skill gaps, build professional ATS resumes, and accelerate your career.
+        </p>
+
+        <!-- Multi-criteria Hero Search Bar -->
+        <div class="hero-search-box">
+          <div class="search-input-col">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="heroJobTitle" placeholder="Job title, skills (e.g. Java, React, Python)..." />
+          </div>
+
+          <div class="search-divider"></div>
+
+          <div class="search-input-col" style="max-width: 220px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <select id="heroLocation">
+              <option value="">All India</option>
+              <option value="Bengaluru">Bengaluru</option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Pune">Pune</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Remote">Remote</option>
+            </select>
+          </div>
+
+          <button id="heroSearchBtn" class="btn btn-primary btn-md">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Find Jobs
+          </button>
+        </div>
+
+        <!-- Quick Search Chips -->
+        <div class="quick-tags-wrap">
+          <span class="quick-tag-label">Popular Searches:</span>
+          <span class="tag-chip" onclick="App.setFilterSkill('Java')">Java Developer</span>
+          <span class="tag-chip" onclick="App.setFilterSkill('Frontend')">Frontend (React)</span>
+          <span class="tag-chip" onclick="App.setFilterSkill('Python')">Python Developer</span>
+          <span class="tag-chip" onclick="App.setFilterSkill('Data Analyst')">Data Analyst</span>
+          <span class="tag-chip" onclick="App.setFilterSkill('VLSI')">VLSI Engineer</span>
+          <span class="tag-chip" onclick="App.setFilterSkill('Spring Boot')">Spring Boot</span>
+          <span class="tag-chip" onclick="App.setFilterSkill('Remote')">Remote</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Job Categories Section -->
+  <section class="section" id="categoriesSection" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-badge">Market Demand</span>
+        <h2 class="section-title">Popular Job Categories</h2>
+        <p class="section-subtitle">Explore open tech opportunities curated across leading engineering disciplines.</p>
+      </div>
+
+      <div class="categories-grid">
+        <div class="category-card card-hover" data-category="Software Development">
+          <div class="category-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          </div>
+          <div>
+            <h3 class="category-title">Software Development</h3>
+            <p class="category-count">Java, Python, Frontend, Backend</p>
+          </div>
+        </div>
+
+        <div class="category-card card-hover" data-category="AI & Data Science">
+          <div class="category-icon-box" style="background: #e0f2fe; color: #0284c7;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+          </div>
+          <div>
+            <h3 class="category-title">AI & Data Science</h3>
+            <p class="category-count">Data Analysts, ML Engineers, NLP</p>
+          </div>
+        </div>
+
+        <div class="category-card card-hover" data-category="Core Engineering">
+          <div class="category-icon-box" style="background: #fef3c7; color: #d97706;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+          </div>
+          <div>
+            <h3 class="category-title">Core Engineering</h3>
+            <p class="category-count">VLSI Design, Embedded, RTL, FPGA</p>
+          </div>
+        </div>
+
+        <div class="category-card card-hover" data-category="Cloud & DevOps">
+          <div class="category-icon-box" style="background: #f3e8ff; color: #9333ea;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+          </div>
+          <div>
+            <h3 class="category-title">Cloud & DevOps</h3>
+            <p class="category-count">AWS, Docker, Kubernetes, CI/CD</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Jobs Carousel/Grid -->
+  <section class="section" id="featuredSection">
+    <div class="container">
+      <div class="flex-between mb-4">
+        <div>
+          <span class="section-badge">Verified Employers</span>
+          <h2 class="section-title">Featured High-Paying Jobs</h2>
+          <p class="section-subtitle">Top opportunities curated for high compensation and fast hiring turnaround.</p>
+        </div>
+        <a href="#jobsSection" class="btn btn-outline btn-sm">View All 15,000+ Jobs →</a>
+      </div>
+
+      <div class="featured-jobs-grid" id="featuredJobsContainer"></div>
+    </div>
+  </section>
+
+  <!-- Main Job Search & Dynamic Filters Section -->
+  <section class="section" id="jobsSection" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-badge">Live Vacancies</span>
+        <h2 class="section-title">Explore Tech & Engineering Jobs</h2>
+        <p class="section-subtitle">Filter seamlessly by skill, location, salary in ₹ LPA, and experience without page reload.</p>
+      </div>
+
+      <div class="jobs-layout">
+        <!-- Sidebar Filters -->
+        <aside class="filters-sidebar">
+          <div class="filters-header">
+            <h4>Filter Jobs</h4>
+            <button id="resetFiltersBtn" class="btn btn-ghost btn-xs text-primary">Reset All</button>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="searchKeyword">Keywords & Skills</label>
+            <input type="text" id="searchKeyword" class="form-input" placeholder="e.g. React, Spring, VLSI..." />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="filterLocation">Location</label>
+            <select id="filterLocation" class="form-input">
+              <option value="">All Locations</option>
+              <option value="Bengaluru">Bengaluru</option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Pune">Pune</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Remote">Remote Only</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="filterCategory">Category</label>
+            <select id="filterCategory" class="form-input">
+              <option value="">All Categories</option>
+              <option value="Software Development">Software Development</option>
+              <option value="AI & Data Science">AI & Data Science</option>
+              <option value="Core Engineering">Core Engineering (VLSI)</option>
+              <option value="Cloud & DevOps">Cloud & DevOps</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="filterSalary">Salary Range (₹ LPA)</label>
+            <select id="filterSalary" class="form-input">
+              <option value="">Any Salary</option>
+              <option value="0-6">Up to ₹6 LPA</option>
+              <option value="6-12">₹6 - 12 LPA</option>
+              <option value="12-20">₹12 - 20 LPA</option>
+              <option value="20+">₹20+ LPA</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="filterExperience">Experience Level</label>
+            <select id="filterExperience" class="form-input">
+              <option value="">All Experience</option>
+              <option value="0-1">Fresher / 0-1 Yr</option>
+              <option value="1-3">Junior / 1-3 Yrs</option>
+              <option value="2-4">Mid-Level / 2-4 Yrs</option>
+              <option value="3-5">Senior / 3-5+ Yrs</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="filterJobType">Work Mode</label>
+            <select id="filterJobType" class="form-input">
+              <option value="">All Modes</option>
+              <option value="Hybrid">Hybrid</option>
+              <option value="On-site">On-site</option>
+              <option value="Remote">Remote</option>
+            </select>
+          </div>
+        </aside>
+
+        <!-- Jobs Listing Content -->
+        <main class="jobs-listing-content">
+          <div class="jobs-toolbar">
+            <div class="flex-start gap-sm">
+              <span class="badge badge-primary" id="jobCountBadge">Loading jobs...</span>
+            </div>
+            <div class="flex-start gap-xs text-xs text-muted">
+              <span>Sorted by AI Relevance & Date</span>
+            </div>
+          </div>
+
+          <!-- Dynamic Job Cards Container -->
+          <div id="jobsContainer" class="jobs-container"></div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Job Recommendation Section -->
+  <section class="section" id="aiMatchSection">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-badge">Smart Matching Algorithm</span>
+        <h2 class="section-title">AI Job Recommendation Engine</h2>
+        <p class="section-subtitle">
+          Test our algorithmic match score live! Enter your technical competencies to calculate real-time compatibility and readiness percentages.
+        </p>
+      </div>
+
+      <!-- AI Match Simulator Card -->
+      <div class="gap-analysis-card mb-4" style="background: var(--bg-card);">
+        <div class="form-row mb-3">
+          <div class="form-group">
+            <label class="form-label" for="aiCandSkills">Your Technical Skills (Comma-separated)</label>
+            <input type="text" id="aiCandSkills" class="form-input" value="Java, Spring Boot, React, JavaScript, SQL, HTML5, CSS3" placeholder="e.g. Java, Python, SQL, React" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="aiCandRole">Target Role Title</label>
+            <input type="text" id="aiCandRole" class="form-input" value="Java Developer" placeholder="e.g. Frontend Developer / Data Analyst" />
+          </div>
+        </div>
+
+        <div class="form-row mb-3">
+          <div class="form-group">
+            <label class="form-label" for="aiCandLocation">Preferred City</label>
+            <input type="text" id="aiCandLocation" class="form-input" value="Bengaluru" placeholder="e.g. Bengaluru, Hyderabad, Pune" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="aiCandExp">Experience</label>
+            <input type="text" id="aiCandExp" class="form-input" value="2 Years" placeholder="e.g. 1 Year, 3 Years" />
+          </div>
+        </div>
+
+        <div class="flex-between">
+          <span class="text-xs text-muted">Matches are scored against verified industry vacancies in real time.</span>
+          <button id="runAIMatchBtn" class="btn btn-primary btn-md">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+            Compute AI Recommendations
+          </button>
+        </div>
+      </div>
+
+      <!-- Scored Results Grid -->
+      <div id="aiRecommendationsResults" class="ai-recommendations-grid"></div>
+    </div>
+  </section>
+
+  <!-- Skill Gap Analysis Section -->
+  <section class="section" id="skillGapSection" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-badge">Career Diagnostics</span>
+        <h2 class="section-title">Automated Skill Gap Analysis</h2>
+        <p class="section-subtitle">
+          Identify missing skills required for your target engineering job and view personalized learning roadmaps with difficulty & timeline estimates.
+        </p>
+      </div>
+
+      <div class="flex-center mb-4" style="max-width: 480px; margin-left: auto; margin-right: auto;">
+        <label class="form-label" for="gapTargetRole">Select Benchmark Target Vacancy:</label>
+        <select id="gapTargetRole" class="form-input"></select>
+      </div>
+
+      <div id="skillGapDisplay"></div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section" id="howItWorks">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-badge">The Technology</span>
+        <h2 class="section-title">How Our AI Job Portal Works</h2>
+        <p class="section-subtitle">A seamless candidate-to-recruiter matching system engineered for precision.</p>
+      </div>
+
+      <div class="categories-grid">
+        <div class="category-card">
+          <div class="category-icon-box">1</div>
+          <div>
+            <h3 class="category-title">Profile & Skill Profiling</h3>
+            <p class="text-sm text-muted">Candidates input competencies, target roles, and location preferences or generate resumes dynamically.</p>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-icon-box" style="background:#e0f2fe; color:#0284c7;">2</div>
+          <div>
+            <h3 class="category-title">Semantic Skill Matching</h3>
+            <p class="text-sm text-muted">Algorithms analyze overlap ratios, compute match percentiles, and categorize fit from Moderate to Excellent.</p>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-icon-box" style="background:#d1fae5; color:#059669;">3</div>
+          <div>
+            <h3 class="category-title">Pipeline Tracking</h3>
+            <p class="text-sm text-muted">Track status from Applied to Under Review, Shortlisted, Interview, and Selection with live recruiter feedback.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Counter Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>15,000+</h3>
+          <p>Verified Engineering Jobs</p>
+        </div>
+        <div class="stat-item">
+          <h3>98.4%</h3>
+          <p>AI Matching Accuracy</p>
+        </div>
+        <div class="stat-item">
+          <h3>12,500+</h3>
+          <p>Candidates Placed in India</p>
+        </div>
+        <div class="stat-item">
+          <h3>2,500+</h3>
+          <p>Partner Tech Enterprises</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Hiring Companies Section -->
+  <section class="section" id="companiesSection" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-badge">Top Employers</span>
+        <h2 class="section-title">Hiring at India's Leading Tech Hubs</h2>
+        <p class="section-subtitle">Recruiting engineering talent across Bengaluru, Hyderabad, Pune, Chennai, and Mumbai.</p>
+      </div>
+
+      <div class="categories-grid">
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=80&h=80&q=80" alt="InnovateX" class="company-logo" />
+          <div>
+            <h4 class="font-bold">InnovateX Technologies</h4>
+            <p class="text-xs text-muted">Bengaluru • 18 Open Roles</p>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=80&h=80&q=80" alt="NexaTech" class="company-logo" />
+          <div>
+            <h4 class="font-bold">NexaTech Solutions</h4>
+            <p class="text-xs text-muted">Hyderabad • 12 Open Roles</p>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=80&h=80&q=80" alt="Tata Digital" class="company-logo" />
+          <div>
+            <h4 class="font-bold">Tata Digital Labs</h4>
+            <p class="text-xs text-muted">Pune • 24 Open Roles</p>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=80&h=80&q=80" alt="SiliconCraft" class="company-logo" />
+          <div>
+            <h4 class="font-bold">SiliconCraft India</h4>
+            <p class="text-xs text-muted">Bengaluru • 8 Open Roles</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="aboutSection">
+    <div class="container">
+      <div class="section-title-wrap">
+        <span class="section-badge">Our Mission</span>
+        <h2 class="section-title">Empowering Careers with Intelligent AI</h2>
+        <p class="section-subtitle">
+          Built to solve the modern hiring mismatch. We provide engineers with automated gap analysis and recruiters with fast, qualified candidate pipelines.
+        </p>
+      </div>
+
+      <div class="gap-analysis-card text-center" style="max-width: 800px; margin: 0 auto;">
+        <h3>Ready to Take the Next Leap in Your Tech Career?</h3>
+        <p class="text-muted mb-4 mt-2">
+          Join thousands of developers, data analysts, and VLSI engineers securing high-growth positions with verified Indian tech enterprises.
+        </p>
+        <div class="flex-center gap-md" style="justify-content: center;">
+          <button class="btn btn-primary btn-md" onclick="AuthModal.open('register', 'candidate')">Create Candidate Account</button>
+          <a href="resume-builder.html" class="btn btn-outline btn-md">Build Free Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <a href="index.html" class="nav-brand">
+            <div class="brand-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <span>AI Job Portal</span>
+          </a>
+          <p class="text-muted text-sm">
+            India's premier AI-assisted job matching and skill diagnostic ecosystem connecting top software engineers, data analysts, and core tech talents with recruiters.
+          </p>
+          <div class="text-xs text-muted">
+            Demo Credentials: Password <strong>12345</strong> for both Candidate & Recruiter
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>For Job Seekers</h4>
+          <ul class="footer-links">
+            <li><a href="#jobsSection">Search Jobs</a></li>
+            <li><a href="#aiMatchSection">AI Recommendation</a></li>
+            <li><a href="#skillGapSection">Skill Gap Analysis</a></li>
+            <li><a href="resume-builder.html">Free ATS Resume Builder</a></li>
+            <li><a href="dashboard.html">Candidate Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>For Recruiters</h4>
+          <ul class="footer-links">
+            <li><a href="dashboard.html" onclick="Dashboard.switchRoleView('recruiter')">Post a Job</a></li>
+            <li><a href="dashboard.html">Applicant Management</a></li>
+            <li><a href="dashboard.html">Talent Pool Database</a></li>
+            <li><a href="javascript:void(0)" onclick="AuthModal.open('login', 'recruiter')">Recruiter Sign In</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Engineering Hubs</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" onclick="App.filters.location='Bengaluru'; App.renderJobs();">Bengaluru Tech Jobs</a></li>
+            <li><a href="javascript:void(0)" onclick="App.filters.location='Hyderabad'; App.renderJobs();">Hyderabad Tech Jobs</a></li>
+            <li><a href="javascript:void(0)" onclick="App.filters.location='Pune'; App.renderJobs();">Pune Tech Jobs</a></li>
+            <li><a href="javascript:void(0)" onclick="App.filters.location='Chennai'; App.renderJobs();">Chennai Tech Jobs</a></li>
+            <li><a href="javascript:void(0)" onclick="App.filters.location='Mumbai'; App.renderJobs();">Mumbai Tech Jobs</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 AI Job Portal System. All rights reserved. Pure HTML5, CSS3, & Vanilla JavaScript.</div>
+        <div class="flex-start gap-md">
+          <a href="javascript:void(0)">Privacy Policy</a>
+          <a href="javascript:void(0)">Terms of Service</a>
+          <a href="javascript:void(0)">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Auth Modal (Login / Register for Candidate & Recruiter) -->
+  <div id="authModal" class="modal-overlay">
+    <div class="modal-container" id="authModalContent"></div>
+  </div>
+
+  <!-- Job Details & Fast Apply Modal -->
+  <div id="jobDetailsModal" class="modal-overlay">
+    <div class="modal-container modal-lg" id="jobDetailsContent"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

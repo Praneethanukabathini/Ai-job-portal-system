@@ -1,0 +1,363 @@
+/**
+ * AI Job Portal - Resume Builder Styles & Print Layout
+ * Real-time A4 preview, dynamic repeaters, template themes, and print stylesheet.
+ */
+
+.resume-builder-page {
+  padding: 1.5rem 0 4rem;
+}
+
+.resume-toolbar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.75rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.toolbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.template-selector-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Builder Split Layout */
+.resume-split-layout {
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* Form Editor Pane */
+.resume-editor-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-height: calc(100vh - 170px);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.editor-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.editor-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.editor-card-header h3 {
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.repeater-item {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Resume Live Paper Preview Container */
+.resume-preview-pane {
+  position: sticky;
+  top: calc(var(--header-height) + 1rem);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  max-height: calc(100vh - 120px);
+}
+
+/* Realistic A4 Paper Sheet */
+.resume-sheet {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  width: 100%;
+  max-width: 750px;
+  min-height: 1000px;
+  padding: 3rem;
+  box-shadow: var(--shadow-xl);
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Modern Template */
+.template-modern .resume-header {
+  border-bottom: 3px solid #4f46e5;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.template-modern .resume-name {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #111827 !important;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.template-modern .resume-role {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #4f46e5 !important;
+  margin-bottom: 0.75rem;
+}
+
+.template-modern .resume-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: #475569 !important;
+}
+
+.template-modern .resume-section {
+  margin-bottom: 1.75rem;
+}
+
+.template-modern .resume-section-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #1e293b !important;
+  border-bottom: 1.5px solid #e2e8f0;
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.template-modern .res-skill-badge {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1e293b !important;
+  margin: 0.2rem;
+}
+
+.template-modern .resume-item {
+  margin-bottom: 1.25rem;
+}
+
+.template-modern .resume-item-title {
+  font-size: 1rem;
+  color: #0f172a !important;
+}
+
+.template-modern .resume-item-sub {
+  font-size: 0.9rem;
+  color: #4f46e5 !important;
+  margin-bottom: 0.4rem;
+}
+
+.template-modern .resume-bullet-list {
+  padding-left: 1.25rem;
+  color: #334155 !important;
+  font-size: 0.9rem;
+}
+
+.template-modern .resume-bullet-list li {
+  margin-bottom: 0.25rem;
+}
+
+/* Classic Executive Template */
+.template-classic {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.template-classic .resume-header {
+  text-align: center;
+  border-bottom: 1px solid #111827;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.template-classic .resume-name {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #000000 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.template-classic .resume-role {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #333333 !important;
+  margin-bottom: 0.5rem;
+}
+
+.template-classic .resume-contacts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 0.85rem;
+}
+
+.template-classic .resume-section-title {
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid #475569;
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.85rem;
+  color: #000000 !important;
+}
+
+.template-classic .res-skill-badge {
+  display: inline-block;
+  margin-right: 0.75rem;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.template-classic .res-skill-badge::after {
+  content: " •";
+}
+
+.template-classic .res-skill-badge:last-child::after {
+  content: "";
+}
+
+/* Minimalist ATS Template */
+.template-minimal {
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: #111827 !important;
+}
+
+.template-minimal .resume-header {
+  border-bottom: 2px solid #000000;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.template-minimal .resume-name {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #000000 !important;
+}
+
+.template-minimal .resume-role {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151 !important;
+  margin-bottom: 0.5rem;
+}
+
+.template-minimal .resume-section-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid #d1d5db;
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.template-minimal .res-skill-badge {
+  display: inline-block;
+  font-size: 0.85rem;
+  padding: 0.15rem 0.45rem;
+  background: #f3f4f6;
+  border-radius: 2px;
+  margin: 0.15rem;
+  font-weight: 500;
+}
+
+/* ==========================================
+   Print Stylesheet
+   ========================================== */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .navbar,
+  .resume-toolbar-card,
+  .resume-editor-pane,
+  .footer,
+  #toastContainer,
+  .modal-overlay {
+    display: none !important;
+  }
+
+  .resume-builder-page {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .resume-split-layout {
+    display: block !important;
+  }
+
+  .resume-preview-pane {
+    position: static !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .resume-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.5cm !important;
+    margin: 0 !important;
+  }
+
+  @page {
+    margin: 0.5cm;
+    size: A4 portrait;
+  }
+}
+
+/* Responsive Resume Builder */
+@media (max-width: 1080px) {
+  .resume-split-layout {
+    grid-template-columns: 1fr;
+  }
+  .resume-preview-pane {
+    position: static;
+    max-height: none;
+  }
+}
